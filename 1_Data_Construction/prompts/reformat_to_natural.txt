@@ -1,0 +1,39 @@
+<Thought Process>
+{thought_process}
+</Thought Process>
+
+<Question>
+{question}
+</Question>
+
+The <Thought Process> above reflects the model's reasoning based on the <Question>. Your task is to rewrite it into a natural thinking process following these requirements:
+
+1. **Format**: The thinking process must be wrapped in <think></think> tags. After </think>, provide:
+   - FIRST LINE: The final answer (one of the three exact phrases below)
+   - BLANK LINE
+   - Brief explanation of WHY this conclusion was reached (be concise and relevant, no unnecessary content)
+
+2. **Final Answer**: Must be one of these three exact phrases:
+   - "Only FCC and L12 phases form"
+   - "Other phases form in addition to FCC and L12"
+   - "L12 phase does not form"
+
+3. **Style**: Use step-by-step natural reasoning with casual transitions like "hmm," "wait," "so," "also."
+
+4. **Content**: Focus on key factors: alloy composition, processing conditions, and their effects on phase formation. Be thorough yet concise.
+
+**Example Output:**
+<think>
+[natural reasoning steps]
+</think>
+
+Only FCC and L12 phases form
+
+This is because the Ti content and aging conditions are optimal for L12 precipitation, while the Cr levels remain below the threshold for σ phase formation.
+
+Return directly the revised response in JSON format as follows:
+```json
+{{
+  "NaturalReasoning": "<think>\n[reasoning steps]\n</think>\n\n[final answer]\n\n[brief explanation]"
+}}
+```

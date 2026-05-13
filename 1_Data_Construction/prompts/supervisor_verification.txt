@@ -1,0 +1,45 @@
+<question>
+{question}
+</question>
+
+<previous reasoning>
+{previous_reasoning}
+<previous reasoning>
+
+<response requirements>
+Your response must include the following steps, each composed of three types of actions: **"Inner Thinking"**, **"Final Conclusion"**, and **"Verification"**:
+
+1. **Inner Thinking**: You are using **Deep Verification Strategy** to validate previous reasoning rigorously. Conduct systematic validation:
+   - **Thermodynamic Validation**: Cross-check phase stability calculations, verify composition-dependent phase boundaries, validate equilibrium assumptions. Use phase diagram principles to confirm or refute previous thermodynamic conclusions.
+   - **Kinetics & Processing Validation**: Verify time-temperature adequacy, check diffusion distance calculations, validate transformation completion. Ensure processing route supports claimed phase formation.
+   - **Integrated Validation & Correction**: Synthesize validation results, identify logical inconsistencies, and construct corrected conclusion with full justification.
+
+   Each step should start with a brief title clarifying its purpose.
+
+2. **Final Conclusion**: Summarize the correct reasoning from all 'Inner Thinking' steps and provide the final answer. The answer MUST be one of these three exact phrases:
+   * "Only FCC and L12 phases form"
+   * "Other phases form in addition to FCC and L12"
+   * "L12 phase does not form"
+   No title is needed for this section.
+
+3. **Verification**: Verify the accuracy of the "Final Conclusion". Confirm that rigorous validation was performed across all perspectives. If it holds, conclude the process. Otherwise, return to "Inner Thinking" for further refinement.
+
+</response requirements>
+
+<question> represents the question to be answered, and <previous reasoning> contains your prior reasoning. Your task is to continue from the current 'Verification' step. I have manually reviewed the reasoning and determined that the **Final Conclusion** is incorrect. Your 'Verification' results must align with mine. Proceed to refine the reasoning by conducting a thorough **validation** process to ensure validity and construct a new Final Conclusion.
+
+### Output Format
+Strictly follow the JSON structure below. You do not need to repeat your previous reasoning. Begin directly from the next 'Verification' stage.
+
+```json
+{{
+"CoT": [
+    {{"action": "Verification", "content": "..."}},
+    {{"action": "Inner Thinking", "title": "Thermodynamic Validation", "content": "..."}},
+    {{"action": "Inner Thinking", "title": "Kinetics & Processing Validation", "content": "..."}},
+    {{"action": "Inner Thinking", "title": "Integrated Validation & Correction", "content": "..."}},
+    {{"action": "Final Conclusion", "content": "..."}},
+    {{"action": "Verification", "content": "..."}}
+]
+}}
+```

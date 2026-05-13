@@ -1,0 +1,55 @@
+<question>
+{question}
+</question>
+
+<previous reasoning>
+{previous_reasoning}
+</previous reasoning>
+
+<response requirements>
+Your response must include the following steps, each composed of three types of actions: **"Inner Thinking"**, **"Final Conclusion"**, and **"Verification"**:
+
+1. **Inner Thinking**: You need to construct reasoning that leads to the correct answer through structured expert analysis. Follow these perspectives systematically:
+   - **Thermodynamic Deep Dive**: Conduct detailed composition analysis, phase diagram consultation, Gibbs free energy assessment, and stability evaluation for L12 vs. competing phases. Explain thermodynamic driving forces.
+   - **Kinetics & Processing Deep Dive**: Perform detailed processing route analysis, time-temperature-transformation assessment, diffusion and precipitation kinetics evaluation. Explain whether processing enables or prevents phase formation.
+   - **Scientific Synthesis**: Integrate thermodynamic and kinetic insights to build a coherent, scientifically sound path to the correct conclusion.
+
+   Each step should start with a brief title and provide detailed metallurgical justification.
+
+2. **Final Conclusion**: Summarize the correct reasoning from all 'Inner Thinking' steps and provide the final answer. The answer MUST be one of these three exact phrases:
+   * "Only FCC and L12 phases form"
+   * "Other phases form in addition to FCC and L12"
+   * "L12 phase does not form"
+   No title is needed for this section.
+
+3. **Verification**: Verify the accuracy of the "Final Conclusion". Check if: (1) all expert perspectives were thoroughly addressed, (2) the answer is one of the three valid phrases, (3) the reasoning is scientifically rigorous and educational. If it holds, conclude the process. Otherwise, return to "Inner Thinking" for further refinement.
+
+</response requirements>
+
+<question> represents the question to be answered, and <previous reasoning> contains your prior reasoning. Your task is to continue from the current 'Verification' step.
+
+**Critical Analysis Guidance**: After careful review of experimental evidence and phase diagrams, I need to inform you that the correct answer should be "{label}". However, you must NOT simply state this answer. Instead, you need to deeply analyze WHY this is the correct answer through rigorous materials science reasoning:
+
+- If the answer is "L12 phase does not form": Conduct detailed analysis of why L12 thermodynamically or kinetically cannot form (insufficient γ'-forming elements? Temperature outside stability window? Competing phase formation? Inadequate aging treatment?).
+
+- If the answer is "Only FCC and L12 phases form": Provide thorough explanation of why L12 precipitates from FCC matrix (optimal Ti+Al+Nb content? Proper aging parameters? Thermodynamic stability of γ+γ' two-phase field?) AND why competing phases (σ, Laves, η, δ) do NOT form (element levels below threshold? Temperature avoids intermetallic formation?).
+
+- If the answer is "Other phases form in addition to FCC and L12": Identify specific additional phases (σ due to high Cr+Mo? η from Nb? Laves from Ti? TCP phases?) and explain their formation mechanisms (composition exceeds solubility? Temperature favors intermetallic nucleation? Long-term aging promotes undesirable precipitation?).
+
+Your 'Verification' must identify flaws in previous reasoning, then provide NEW 'Inner Thinking' steps with detailed metallurgical justification that naturally leads to this conclusion. Make the reasoning process authentic and educational - as if discovering the answer through scientific analysis, not because it was told to you.
+
+### Output Format
+Strictly follow the JSON structure below. You do not need to repeat your previous reasoning. Begin directly from the next 'Verification' stage.
+
+```json
+{{
+"CoT": [
+    {{"action": "Verification", "content": "..."}},
+    {{"action": "Inner Thinking", "title": "Thermodynamic Deep Dive", "content": "..."}},
+    {{"action": "Inner Thinking", "title": "Kinetics & Processing Deep Dive", "content": "..."}},
+    {{"action": "Inner Thinking", "title": "Scientific Synthesis", "content": "..."}},
+    {{"action": "Final Conclusion", "content": "..."}},
+    {{"action": "Verification", "content": "..."}}
+]
+}}
+```

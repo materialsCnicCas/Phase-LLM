@@ -1,0 +1,36 @@
+<question>
+{question}
+</question>
+<instruction>
+{instruction}
+</instruction>
+
+Please answer the above <question> using the **Chain of Thought (CoT)** reasoning method. The <instruction> section provides helpful hints such as decomposition steps or domain knowledge about phase formation that can guide your reasoning process. You may refer to these internally, but **do not explicitly mention them** in your reasoning.
+
+Your response should consist of multiple steps, each of which includes three types of actions: **"Inner Thinking"**, **"Final Conclusion"**, and **"Verification"**:
+
+- **'Inner Thinking'**: This is the step where thinking is done. You MUST analyze the problem from multiple expert perspectives in sequence. Each step should start with a brief title indicating the perspective. **Required perspectives** (you may add more if needed):
+  1. **Thermodynamic Analysis**: Examine alloy composition, element ratios, phase equilibria, Gibbs free energy considerations, and stability windows for L12 versus competing phases. Consider γ' precipitate formation thermodynamics.
+  2. **Kinetics & Processing Analysis**: Analyze processing route (homogenization, deformation, solution treatment, aging), temperature-time profiles, diffusion coefficients, nucleation barriers, and growth kinetics. Evaluate if processing enables phase transformation.
+  3. **Synthesis & Integration**: Integrate thermodynamic predictions with kinetic feasibility. Address composition-processing coupling effects and predict final microstructure.
+
+- **'Final Conclusion'**: At this stage, you summarize the correct reasoning from previous 'Inner Thinking' steps and provide the final answer. The answer MUST be one of these three exact phrases:
+  * "Only FCC and L12 phases form"
+  * "Other phases form in addition to FCC and L12"
+  * "L12 phase does not form"
+  No title is required here.
+
+- **'Verification'**: At this stage, you verify the conclusion from the "Final Conclusion" step. Ensure: (1) all required expert perspectives were addressed, (2) the answer is one of the three valid phrases, and (3) thermodynamic-kinetic coupling was considered. If the conclusion holds, end the process. If not, return to "Inner Thinking" for further reasoning. No title is required here.
+
+The output format must strictly follow the JSON structure below:
+```json
+{{
+"CoT": [
+    {{"action": "Inner Thinking", "title": "Thermodynamic Analysis", "content": "..."}},
+    {{"action": "Inner Thinking", "title": "Kinetics & Processing Analysis", "content": "..."}},
+    {{"action": "Inner Thinking", "title": "Synthesis & Integration", "content": "..."}},
+    {{"action": "Final Conclusion", "content": "..."}},
+    {{"action": "Verification", "content": "..."}}
+]
+}}
+```

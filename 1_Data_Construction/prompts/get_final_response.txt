@@ -1,0 +1,29 @@
+<Internal Thinking>
+{internal_thinking}
+</Internal Thinking>
+
+<Question>
+{question}
+</Question>
+
+The <Internal Thinking> represents your internal thoughts about the <Question>. Based on this, generate a final response following these requirements:
+
+**Requirements:**
+1. **Format Structure**:
+   - Provide the final answer as the FIRST LINE. The answer MUST be one of these three exact phrases:
+     * "Only FCC and L12 phases form"
+     * "Other phases form in addition to FCC and L12"
+     * "L12 phase does not form"
+   - Add a blank line, then provide a brief explanation of WHY this conclusion was reached (be concise and relevant, no unnecessary content)
+
+2. **Content Guidelines**:
+   - Provide thorough reasoning steps in natural language
+   - Focus on key factors: composition analysis, heat treatment effects, phase stability
+   - Be complete and rigorous in analysis
+
+**Example Structure:**
+Only FCC and L12 phases form
+
+The Ti content and aging conditions are optimal for L12 precipitation, while other element levels remain below thresholds for competing phase formation.
+
+Output only your response in this format, nothing else.

@@ -1,0 +1,45 @@
+<question>
+{question}
+</question>
+
+<previous reasoning>
+{previous_reasoning}
+<previous reasoning>
+
+<response requirements>
+Your response must include the following steps, each composed of three types of actions: **"Inner Thinking"**, **"Final Conclusion"**, and **"Verification"**:
+
+1. **Inner Thinking**: You are using **Precision Correction Strategy** to fix specific errors. Identify and correct mistakes systematically:
+   - **Thermodynamic Error Identification & Correction**: Pinpoint specific errors in phase stability assessment, composition analysis, or equilibrium predictions. Provide corrected thermodynamic reasoning with clear justification.
+   - **Kinetics & Processing Error Identification & Correction**: Identify mistakes in processing parameter interpretation, transformation kinetics, or time-temperature assessment. Provide corrected kinetic analysis.
+   - **Corrected Integration**: Synthesize corrected thermodynamic and kinetic understanding into a unified, error-free conclusion.
+
+   Each step should start with a brief title clarifying its purpose.
+
+2. **Final Conclusion**: Summarize the correct reasoning from all 'Inner Thinking' steps and provide the final answer. The answer MUST be one of these three exact phrases:
+   * "Only FCC and L12 phases form"
+   * "Other phases form in addition to FCC and L12"
+   * "L12 phase does not form"
+   No title is needed for this section.
+
+3. **Verification**: Verify the accuracy of the "Final Conclusion". Confirm that specific errors were identified and properly corrected. If it holds, conclude the process. Otherwise, return to "Inner Thinking" for further refinement.
+
+</response requirements>
+
+<question> represents the question to be answered, and <previous reasoning> contains your prior reasoning. Your task is to continue from the current 'Verification' step. I have manually reviewed the reasoning and determined that the **Final Conclusion** is incorrect. Your 'Verification' results must align with mine. Proceed to refine the reasoning by making precise **corrections** to address prior flaws in understanding phase behavior and construct a new Final Conclusion.
+
+### Output Format
+Strictly follow the JSON structure below. You do not need to repeat your previous reasoning. Begin directly from the next 'Verification' stage.
+
+```json
+{{
+"CoT": [
+    {{"action": "Verification", "content": "..."}},
+    {{"action": "Inner Thinking", "title": "Thermodynamic Error Identification & Correction", "content": "..."}},
+    {{"action": "Inner Thinking", "title": "Kinetics & Processing Error Identification & Correction", "content": "..."}},
+    {{"action": "Inner Thinking", "title": "Corrected Integration", "content": "..."}},
+    {{"action": "Final Conclusion", "content": "..."}},
+    {{"action": "Verification", "content": "..."}}
+]
+}}
+```

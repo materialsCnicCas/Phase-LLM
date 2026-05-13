@@ -1,0 +1,29 @@
+<question>
+{question}
+</question>
+<instruction>
+{instruction}
+</instruction>
+
+Please answer the above <question> using the **Chain of Thought (CoT)** reasoning method.
+Use <instruction> as additional context that integrates previous thermodynamic and kinetic analysis.
+
+Your response should consist of three action types: **"Inner Thinking"**, **"Final Conclusion"**, and **"Verification"**.
+
+- **Inner Thinking**: Integrate all evidence and form a coherent metallurgical judgment.
+- **Final Conclusion**: Must be exactly one of:
+   * "Only FCC and L12 phases form"
+   * "Other phases form in addition to FCC and L12"
+   * "L12 phase does not form"
+- **Verification**: Verify format correctness and logic consistency.
+
+Return strictly in JSON format:
+```json
+{{
+"CoT": [
+      {{"action": "Inner Thinking", "title": "Synthesis & Integration", "content": "..."}},
+      {{"action": "Final Conclusion", "content": "..."}},
+      {{"action": "Verification", "content": "..."}}
+]
+}}
+```

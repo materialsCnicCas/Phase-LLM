@@ -1,0 +1,32 @@
+<question>
+{question}
+</question>
+
+Please respond to the above question <question> using the Chain of Thought (CoT) reasoning method. This is a materials science question about phase formation based on material composition and reaction conditions. Your response should consist of multiple steps, each of which includes three types of actions: **"Inner Thinking"**, **"Final Conclusion"**, and **"Verification"**:
+
+- **'Inner Thinking'**: This is the step where thinking is done. Conduct a comprehensive analysis of the problem, integrating all relevant factors including alloy composition (element ratios, γ'-forming elements, etc.), thermodynamic phase stability (L12 vs. competing phases such as σ, η, Laves), heat treatment conditions (temperatures, times, cooling rates), and processing-induced kinetic effects. No title is required here.
+
+- **'Final Conclusion'**: At this stage, you summarize the correct reasoning from previous 'Inner Thinking' steps and provide the final answer. The answer MUST be one of these three exact phrases:
+  * "Only FCC and L12 phases form"
+  * "Other phases form in addition to FCC and L12"
+  * "L12 phase does not form"
+  No title is required here.
+
+- **'Verification'**: At this stage, you verify the conclusion from the "Final Conclusion" step. Check if: (1) the analysis is comprehensive and consistent, (2) the output format is correct, and (3) the reasoning logically supports the conclusion. If the conclusion holds, end the process. If not, return to "Inner Thinking" for further reasoning. No title is required here.
+
+The output format must strictly follow the JSON structure below:
+```json
+{{
+"CoT": [
+    {{"action": "Inner Thinking", "content": "..."}},
+    {{"action": "Final Conclusion", "content": "..."}},
+    {{"action": "Verification", "content": "..."}}
+]
+}}
+```
+
+NOTE: This is the BASELINE "mixed" prompt used for ablation studies.
+It does NOT decompose the analysis into separate thermodynamic / kinetic / synthesis perspectives.
+Instead, a single holistic "Inner Thinking" step is used.
+Compare the performance of this prompt against the multi-agent role-decomposed prompt
+(agent_thermo.txt) to demonstrate the effectiveness of expert role decomposition.

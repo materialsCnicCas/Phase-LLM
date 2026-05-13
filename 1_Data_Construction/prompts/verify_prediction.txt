@@ -1,0 +1,24 @@
+<Model Response>
+{model_response}
+</Model Response>
+
+<Reference Answer>
+{reference_answer}
+</Reference Answer>
+
+You are verifying a phase formation prediction for alloys based on material composition and reaction conditions.
+
+Task:
+- Reference Answer is one of three exact phrases:
+  * "Only FCC and L12 phases form"
+  * "Other phases form in addition to FCC and L12"
+  * "L12 phase does not form"
+- Extract the prediction from Model Response (look for one of these three exact phrases in the first line after </think> tag)
+- If the model used descriptive text instead of exact phrases, map to the correct phrase:
+  * Descriptions indicating L12 doesn't form → "L12 phase does not form"
+  * Descriptions indicating only FCC and L12 → "Only FCC and L12 phases form"
+  * Descriptions indicating additional phases → "Other phases form in addition to FCC and L12"
+- Compare extracted prediction with Reference Answer
+- Output "True" if they match (same meaning), "False" if they don't match
+
+Output only "True" or "False".
