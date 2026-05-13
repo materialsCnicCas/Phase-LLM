@@ -1,0 +1,16 @@
+### model
+# Base model used in SFT
+model_name_or_path: /home/yuanyang/liangsihan/Phase-LLM-Open-Source/model
+
+# LoRA checkpoint directory produced by SFT training
+adapter_name_or_path: /home/yuanyang/liangsihan/Phase-LLM-Open-Source/2_Training_SFT/saves/phase-llm-qwen3-8b-lora-sft/checkpoint-210
+
+template: qwen3
+finetuning_type: lora
+trust_remote_code: true
+
+### export
+export_dir: /home/yuanyang/liangsihan/Phase-LLM-Open-Source/2_Training_SFT/saves/phase-llm-qwen3-8b-sft-merged-test
+export_size: 5
+export_device: cuda
+export_legacy_format: false

@@ -1,0 +1,16 @@
+{
+  "materials_phase_cot_sft": {
+    "file_name": "train_sft.jsonl",
+    "columns": {
+      "prompt": "prompt",
+      "response": "response"
+    }
+  },
+  "materials_phase_cot_full": {
+    "file_name": "train.jsonl",
+    "columns": {
+      "prompt": "prompt",
+      "response": "response"
+    }
+  }
+}

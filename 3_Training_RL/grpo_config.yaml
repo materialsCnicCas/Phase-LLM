@@ -1,0 +1,94 @@
+# GRPO training config for OpenR1 (Phase-LLM local layout)
+
+# ================================
+# Runtime / acceleration
+# ================================
+deepspeed: null
+use_vllm: true
+vllm_mode: colocate
+vllm_model_impl: transformers
+vllm_gpu_memory_utilization: 0.55
+
+# ================================
+# Model
+# ================================
+# Use merged SFT model from ../2_Training_SFT as RL initialization.
+model_name_or_path: /home/yuanyang/liangsihan/Phase-LLM-Open-Source/2_Training_SFT/saves/phase-llm-qwen3-8b-sft-merged
+model_revision: main
+attn_implementation: sdpa
+
+# ================================
+# Dataset
+# ================================
+dataset_name: json
+dataset_config: phase_llm_rl
+dataset_train_split: train
+dataset_prompt_column: problem
+dataset_kwargs:
+  data_files:
+    train: data/train_rl_openr1.jsonl
+
+system_prompt: "You are a senior metallurgist specializing in phase prediction for complex alloys. First reason step by step inside <think>...</think>. Then provide exactly one final label on a new line, choosing only one of: Only FCC and L12 phases form; Other phases form in addition to FCC and L12; L12 phase does not form. Do not invent new labels or paraphrase the final label."
+
+# ================================
+# PEFT / LoRA
+# ================================
+use_peft: true
+lora_r: 16
+lora_alpha: 32
+lora_target_modules:
+  - q_proj
+  - k_proj
+  - v_proj
+  - o_proj
+  - gate_proj
+  - up_proj
+  - down_proj
+
+# ================================
+# Training
+# ================================
+output_dir: output/phase_llm_grpo/test-1-5
+overwrite_output_dir: false
+
+learning_rate: 1.0e-5
+lr_scheduler_type: cosine_with_min_lr
+lr_scheduler_kwargs:
+  min_lr_rate: 0.1
+warmup_ratio: 0.01
+beta: 0.03
+
+per_device_train_batch_size: 8
+gradient_accumulation_steps: 4
+num_generations: 8
+gradient_checkpointing: true
+gradient_checkpointing_kwargs:
+  use_reentrant: false
+ddp_find_unused_parameters: false
+
+max_prompt_length: 512
+max_completion_length: 1024
+
+num_train_epochs: 8
+save_strategy: epoch
+save_total_limit: 8
+eval_strategy: "no"
+logging_steps: 1
+logging_first_step: true
+log_completions: true
+
+bf16: true
+fp16: false
+seed: 42
+temperature: 0.7
+report_to: ["none"]
+
+# ================================
+# Rewards
+# ================================
+reward_funcs:
+  - material_accuracy
+  - material_format
+reward_weights:
+  - 10.0
+  - 1.0
